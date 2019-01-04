@@ -1,0 +1,1 @@
+thrift-go -output .  -idl t.thrift -prefix github.com/lemonwx/read-signed-num/idl/echo2
