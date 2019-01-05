@@ -8,11 +8,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/valyala/fastrand"
-
 	"github.com/cespare/xxhash"
-
 	"github.com/lemonwx/log"
+	"github.com/valyala/fastrand"
 )
 
 var (
@@ -112,11 +110,6 @@ func conflictTest(hashType int) {
 var count int
 
 func mainHashTest() {
-	x, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		log.Fatal(err)
-	}
-	count = x
 	// hashTypes := []int{Fnv, xxHash, md5_, sha1_}
 	hashTypes := []int{Fnv}
 
@@ -154,6 +147,15 @@ func mainRandStrConflict() {
 }
 
 func main() {
-	mainHashTest()
-	//mainRandStrConflict()
+	x1, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		log.Fatal(err)
+	}
+	x2, err := strconv.Atoi(os.Args[2])
+	count = x1
+	for count < x2 {
+		mainHashTest()
+		//mainRandStrConflict()
+		count *= 2
+	}
 }
