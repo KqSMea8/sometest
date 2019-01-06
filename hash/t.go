@@ -8,6 +8,8 @@ import (
 	"os"
 	"strconv"
 
+	"code.byted.org/inf/bytable_master/utils/uuid"
+
 	"github.com/cespare/xxhash"
 	"github.com/lemonwx/log"
 	"github.com/valyala/fastrand"
@@ -20,7 +22,7 @@ var (
 
 const (
 	MinLen = 2
-	MaxLen = 50
+	MaxLen = 100
 
 	Fnv = iota
 	xxHash
@@ -38,6 +40,7 @@ func randString() []byte {
 }
 
 func randUniqueStr() []byte {
+	return []byte(uuid.Gen())
 	for {
 		str := randString()
 		_, ok := dicts[string(str)]
